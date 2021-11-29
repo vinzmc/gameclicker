@@ -11,11 +11,11 @@ public class GuiScript : MonoBehaviour
     int ice;
     int runic;
 
-    //Variable
+    //Variable, (jangan di atur di inspector)
 
-    int money;
-    int wave;
-    int dps;
+    public int money;
+    public int wave;
+    public int dps;
 
     //UI
     public TextMeshProUGUI moneyUi;
@@ -117,6 +117,7 @@ public class GuiScript : MonoBehaviour
         wave = 1;
         dps = 10;
     }
+
     void exitGame()
     {
         SaveGame();

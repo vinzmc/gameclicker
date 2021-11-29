@@ -20148,7 +20148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 1db38da97b6ad094dbca967f13dd370f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400014, guid: 1db38da97b6ad094dbca967f13dd370f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -68206,7 +68206,7 @@ Transform:
   - {fileID: 898713107}
   - {fileID: 1930872108}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1773576014
 PrefabInstance:
@@ -77206,7 +77206,7 @@ GameObject:
   - component: {fileID: 2004651623}
   - component: {fileID: 2004651627}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: GameUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77305,6 +77305,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2e58e44c3857847a35f15dc92ed2f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moneyUi: {fileID: 1903268115}
+  waveUI: {fileID: 0}
+  dpsUi: {fileID: 0}
 --- !u!1001 &2006921720
 PrefabInstance:
   m_ObjectHideFlags: 0
