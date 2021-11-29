@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClickDetection : MonoBehaviour
+public class MonsterBehavior : MonoBehaviour
 {
     private Animator animator;
     public float health;
@@ -14,7 +14,7 @@ public class ClickDetection : MonoBehaviour
     
 
     //dari object bernama GameUI di scene
-    public GameObject gui;
+    GameObject gui;
     GuiScript script;
 
     // Start is called before the first frame update
