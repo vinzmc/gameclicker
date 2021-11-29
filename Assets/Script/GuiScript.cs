@@ -18,9 +18,9 @@ public class GuiScript : MonoBehaviour
     public int dps;
 
     //UI
-    public TextMeshProUGUI moneyUi;
-    public TextMeshProUGUI waveUI;
-    public TextMeshProUGUI dpsUi;
+    public TextMeshProUGUI moneyText;
+    public TextMeshProUGUI waveText;
+    public TextMeshProUGUI dpsText;
 
     //contoh
     // int intToSave;
@@ -41,9 +41,9 @@ public class GuiScript : MonoBehaviour
     void Update()
     {
         //masukin parameter ke UI
-        moneyUi.text = '$' + money.ToString();
-        waveUI.text = wave.ToString();
-        dpsUi.text = dps.ToString();
+        moneyText.text = '$' + money.ToString();
+        waveText.text = wave.ToString();
+        dpsText.text = dps.ToString();
     }
 
     //update Spell 
