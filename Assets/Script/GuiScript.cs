@@ -22,6 +22,17 @@ public class GuiScript : MonoBehaviour
     public TextMeshProUGUI waveText;
     public TextMeshProUGUI dpsText;
 
+    // UI Spell
+    public TextMeshProUGUI fireLvl;
+    public TextMeshProUGUI iceLvl;
+    public TextMeshProUGUI runicLvl;
+
+
+
+    // public Button fireButon;
+    // public Button iceButton;
+    // public Button runicButton;
+
     //contoh
     // int intToSave;
     // float floatToSave;
@@ -31,6 +42,7 @@ public class GuiScript : MonoBehaviour
     {
         //starting game
         LoadGame();
+        assignOnClick();
 
         //fungsi untuk auto save game perdetik [time]
         float time = 5f;
@@ -44,6 +56,10 @@ public class GuiScript : MonoBehaviour
         moneyText.text = '$' + money.ToString();
         waveText.text = wave.ToString();
         dpsText.text = dps.ToString();
+
+        fireLvl.text = "Lv. " + fire.ToString();
+        iceLvl.text = "Lv. " + ice.ToString();
+        runicLvl.text = "Lv. " + runic.ToString();
     }
 
     //update Spell 
@@ -154,6 +170,19 @@ public class GuiScript : MonoBehaviour
     //     Debug.Log("Data reset complete");
     // }
 
+    void assignOnClick()
+    {
+        //button assign
+        Button btnFire = GameObject.Find("Buy Fire").GetComponent<Button>();
+        btnFire.onClick.AddListener(delegate { upgradeSpell("fire", 10); });
+
+        Button btnIce = GameObject.Find("Buy Ice").GetComponent<Button>();
+        btnIce.onClick.AddListener(delegate { upgradeSpell("ice", 15); });
+
+        Button btnRunic = GameObject.Find("Buy Runic").GetComponent<Button>();
+        btnRunic.onClick.AddListener(delegate { upgradeSpell("runic", 25); });
+    }
+    
     void OnGUI()
     {
         // if (GUI.Button(new Rect(0, 0, 125, 50), "Raise Integer"))
