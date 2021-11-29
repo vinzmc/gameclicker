@@ -4082,7 +4082,7 @@ GameObject:
   - component: {fileID: 91452959}
   - component: {fileID: 91452958}
   m_Layer: 5
-  m_Name: Level
+  m_Name: Level Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11962,7 +11962,7 @@ GameObject:
   - component: {fileID: 294474474}
   - component: {fileID: 294474473}
   m_Layer: 5
-  m_Name: Buy
+  m_Name: Buy Runic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29442,7 +29442,7 @@ GameObject:
   - component: {fileID: 719389331}
   - component: {fileID: 719389330}
   m_Layer: 5
-  m_Name: Level
+  m_Name: Level Runic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37723,7 +37723,7 @@ GameObject:
   - component: {fileID: 915885893}
   - component: {fileID: 915885892}
   m_Layer: 5
-  m_Name: Buy
+  m_Name: Buy Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46374,7 +46374,7 @@ GameObject:
   - component: {fileID: 1188117851}
   - component: {fileID: 1188117850}
   m_Layer: 5
-  m_Name: BuyMax
+  m_Name: BuyMax Runic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46565,7 +46565,7 @@ GameObject:
   - component: {fileID: 1190962308}
   - component: {fileID: 1190962307}
   m_Layer: 5
-  m_Name: Level
+  m_Name: Level Ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50945,6 +50945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9834c926d9be8e54f95a43ecd6d689bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn: 1
   MonsterPrefabs: {fileID: 2842231887066059325, guid: a348d52d762fc0e4ca6924d5bf0afc59, type: 3}
 --- !u!1 &1291868513
 GameObject:
@@ -57600,7 +57601,7 @@ GameObject:
   - component: {fileID: 1500597869}
   - component: {fileID: 1500597868}
   m_Layer: 5
-  m_Name: Buy
+  m_Name: Buy Ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71710,7 +71711,7 @@ GameObject:
   - component: {fileID: 1852934453}
   - component: {fileID: 1852934452}
   m_Layer: 5
-  m_Name: BuyMax
+  m_Name: BuyMax Ice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74867,7 +74868,7 @@ GameObject:
   - component: {fileID: 1931479988}
   - component: {fileID: 1931479987}
   m_Layer: 5
-  m_Name: BuyMax
+  m_Name: BuyMax Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77294,6 +77295,9 @@ MonoBehaviour:
   moneyText: {fileID: 1903268115}
   waveText: {fileID: 1778458843}
   dpsText: {fileID: 392980321}
+  fireLvl: {fileID: 91452958}
+  iceLvl: {fileID: 1190962307}
+  runicLvl: {fileID: 719389330}
 --- !u!1001 &2006921720
 PrefabInstance:
   m_ObjectHideFlags: 0
