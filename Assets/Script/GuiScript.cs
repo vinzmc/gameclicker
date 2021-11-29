@@ -33,7 +33,7 @@ public class GuiScript : MonoBehaviour
         LoadGame();
 
         //fungsi untuk auto save game perdetik [time]
-        float time = 60f;
+        float time = 5f;
         InvokeRepeating("SaveGame", time, time);
     }
 

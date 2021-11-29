@@ -11,11 +11,13 @@ public class MonsterBehavior : MonoBehaviour
     //Dropped Items
     public int droppedMoney;//total uang yang di drop oleh monster
 
+    // parameter untuk check
+    float deathDelay;
     //healthbar dari monster
-    public HealthBar healthBar;
+    HealthBar healthBar;
 
     //dari object bernama GameUI di scene
-    public GuiScript script;
+    GuiScript script;
     // animator dari object
     Animator animator;
 
@@ -41,17 +43,31 @@ public class MonsterBehavior : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !animator.GetBool("died"))
         {
-            Debug.Log(script.dps);
             health -= totalDamage(script.dps);
             healthBar.setHealth((int)health);
             animator.SetTrigger("hitted");
         }
 
-        if (health <= 0 && !animator.GetBool("died"))
+        if (health <= 0)
         {
-            Debug.Log(health);
             animator.SetBool("died", true);
-            deathFunction();
+
+            //delay animation
+            if (deathDelay == 0f)
+            {
+                float delay = 1.5f;
+                deathDelay = Time.time + delay;
+            }
+
+            //destroy object + give money after delay
+            if (Time.time > deathDelay)
+            {
+                Destroy(gameObject);
+                script.money += droppedMoney;
+                MonsterSpawner monsterSpawnerScript = gameObject.GetComponentInParent<MonsterSpawner>();
+                monsterSpawnerScript.spawn = true;
+                deathDelay = 0f;
+            }
         }
     }
 
@@ -59,19 +75,6 @@ public class MonsterBehavior : MonoBehaviour
     {
         hitDamage -= (hitDamage * armor);
         return hitDamage;
-    }
-
-    void deathFunction()
-    {
-        script.wave += 1;
-
-        //delay untuk death animation
-        float delay = 0.2f;
-        float multiplier = animator.GetFloat("deadAnimationSpeed");
-        Destroy(gameObject, (animator.GetCurrentAnimatorStateInfo(0).length * multiplier) + delay);
-
-        //tambahkan uang saat musuh mati
-        script.money += droppedMoney;
     }
 
     public void initiateMonster(float startHealth, float startArmor, float startSpeed, int startDroppedMoney)

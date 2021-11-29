@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class MonsterSpawner : MonoBehaviour
 {
+    public bool spawn = true;
     public GameObject MonsterPrefabs;
     // Start is called before the first frame update
     void Start()
     {
-        spawnMonster();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (spawn)
+        {
+            spawnMonster();
+            spawn = false;
+        }
     }
 
     void spawnMonster()
