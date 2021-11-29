@@ -31,6 +31,7 @@ public class MonsterBehavior : MonoBehaviour
 
         GameObject healthBarGui = GameObject.Find("Health Bar");
         healthBar = healthBarGui.GetComponent<HealthBar>();
+        DFTController.Initialize();
 
         //inisiasi status monster
         // initiateMonster();
@@ -45,6 +46,7 @@ public class MonsterBehavior : MonoBehaviour
             health -= totalDamage(script.dps);
             healthBar.setHealth((int)health);
             animator.SetTrigger("hitted");
+            DFTController.CreateFloatingText(totalDamage(script.dps).ToString(), transform);
         }
 
         if (health <= 0 && !animator.GetBool("died"))
