@@ -41,33 +41,52 @@ public class GuiScript : MonoBehaviour
     void Update()
     {
         //masukin parameter ke UI
-        moneyUi.text = '$'+money.ToString();
+        moneyUi.text = '$' + money.ToString();
         waveUI.text = wave.ToString();
         dpsUi.text = dps.ToString();
-        
     }
 
-
-    void OnGUI()
+    //update Spell 
+    void upgradeSpell(string spellName, int upgradePrice)
     {
-        // if (GUI.Button(new Rect(0, 0, 125, 50), "Raise Integer"))
-        //     intToSave++;
-        // if (GUI.Button(new Rect(0, 100, 125, 50), "Raise Float"))
-        //     floatToSave += 0.1f;
-        // stringToSave = GUI.TextField(new Rect(0, 200, 125, 25),
-        //            stringToSave, 15);
-        // GUI.Label(new Rect(375, 0, 125, 50), "Integer value is "
-        //            + intToSave);
-        // GUI.Label(new Rect(375, 100, 125, 50), "Float value is "
-        //            + floatToSave.ToString("F1"));
-        // GUI.Label(new Rect(375, 200, 125, 50), "String value is "
-        //           + stringToSave);
-        // if (GUI.Button(new Rect(750, 0, 125, 50), "Save Your Game"))
-        //     SaveGame();
-        // if (GUI.Button(new Rect(750, 100, 125, 50),
-        //             "Load Your Game"))
-        //     LoadGame();
+        if (money >= upgradePrice)
+        {
+            money -= upgradePrice;
+            if (spellName == "fire")
+            {
+                fire += 1;
+                dps += 100;
+            }
+            else if (spellName == "ice")
+            {
+                ice += 1;
+                // idle damage
+            }
+            else if (spellName == "runic")
+            {
+                runic += 1;
+                dps += 200;
+            }
+        }
+        else
+        {
+            Debug.Log("uang ga cukup dek!");
+        }
     }
+
+    void initialValue()
+    {
+        //spell parameter
+        fire = 1;
+        ice = 1;
+        runic = 1;
+
+        //base parameter
+        money = 0;
+        wave = 1;
+        dps = (fire * 100) + (runic * 200);
+    }
+
 
     void SaveGame()
     {
@@ -110,14 +129,6 @@ public class GuiScript : MonoBehaviour
             SaveGame();
         }
     }
-
-    void initialValue()
-    {
-        money = 0;
-        wave = 1;
-        dps = 10;
-    }
-
     void exitGame()
     {
         SaveGame();
@@ -132,4 +143,26 @@ public class GuiScript : MonoBehaviour
     //     stringToSave = "";
     //     Debug.Log("Data reset complete");
     // }
+
+    void OnGUI()
+    {
+        // if (GUI.Button(new Rect(0, 0, 125, 50), "Raise Integer"))
+        //     intToSave++;
+        // if (GUI.Button(new Rect(0, 100, 125, 50), "Raise Float"))
+        //     floatToSave += 0.1f;
+        // stringToSave = GUI.TextField(new Rect(0, 200, 125, 25),
+        //            stringToSave, 15);
+        // GUI.Label(new Rect(375, 0, 125, 50), "Integer value is "
+        //            + intToSave);
+        // GUI.Label(new Rect(375, 100, 125, 50), "Float value is "
+        //            + floatToSave.ToString("F1"));
+        // GUI.Label(new Rect(375, 200, 125, 50), "String value is "
+        //           + stringToSave);
+        // if (GUI.Button(new Rect(750, 0, 125, 50), "Save Your Game"))
+        //     SaveGame();
+        // if (GUI.Button(new Rect(750, 100, 125, 50),
+        //             "Load Your Game"))
+        //     LoadGame();
+    }
 }
+
