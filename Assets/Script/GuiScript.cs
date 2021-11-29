@@ -101,6 +101,9 @@ public class GuiScript : MonoBehaviour
         PlayerPrefs.SetInt("dps", dps);
 
         //Spell
+        PlayerPrefs.SetInt("fire", fire);
+        PlayerPrefs.SetInt("ice", ice);
+        PlayerPrefs.SetInt("runic", runic);
 
         //save game
         PlayerPrefs.Save();
@@ -117,9 +120,16 @@ public class GuiScript : MonoBehaviour
             // floatToSave = PlayerPrefs.GetFloat("SavedFloat");
             // stringToSave = PlayerPrefs.GetString("SavedString");
 
+            //base parameter
             money = PlayerPrefs.GetInt("money");
             wave = PlayerPrefs.GetInt("wave");
             dps = PlayerPrefs.GetInt("dps");
+
+            //spell
+            fire = PlayerPrefs.GetInt("fire");
+            ice = PlayerPrefs.GetInt("ice");
+            runic = PlayerPrefs.GetInt("runic");
+
             Debug.Log("Game data loaded!");
         }
         else

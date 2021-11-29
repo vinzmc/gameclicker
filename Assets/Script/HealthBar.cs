@@ -9,6 +9,10 @@ public class HealthBar : MonoBehaviour
     public Slider slider;
     public TextMeshProUGUI healthText;
 
+    public void start(){
+        slider = gameObject.GetComponent<Slider>();
+    }
+
     public void SetMaxHealth(int health)
     {
         slider.maxValue = health;

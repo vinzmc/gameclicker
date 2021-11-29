@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class MonsterBehavior : MonoBehaviour
 {
-    private Animator animator;
-    public float health;
-    public float armor;//persentase
+    public float health; //darah monster
+    public float armor; //persentase
     public float speed; //per menit
 
+    //Dropped Items
+    public int droppedMoney;//total uang yang di drop oleh monster
+
+    //healthbar dari monster
     public HealthBar healthBar;
 
-    //Dropped Items
-    public int droppedMoney = 50;//total uang yang di drop oleh monster
-    
-
     //dari object bernama GameUI di scene
-    GameObject gui;
-    GuiScript script;
+    public GuiScript script;
+    // animator dari object
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -26,13 +26,14 @@ public class MonsterBehavior : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
 
         //dari object gameUI, ambil script GuiScript
-        gui = GameObject.Find("GameUI");
+        GameObject gui = GameObject.Find("GameUI");
         script = gui.GetComponent<GuiScript>();
 
-        
+        GameObject healthBarGui = GameObject.Find("Health Bar");
+        healthBar = healthBarGui.GetComponent<HealthBar>();
 
         //inisiasi status monster
-        initiateMonster();
+        // initiateMonster();
     }
 
     // Update is called once per frame
@@ -40,6 +41,7 @@ public class MonsterBehavior : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !animator.GetBool("died"))
         {
+            Debug.Log(script.dps);
             health -= totalDamage(script.dps);
             healthBar.setHealth((int)health);
             animator.SetTrigger("hitted");
@@ -51,7 +53,6 @@ public class MonsterBehavior : MonoBehaviour
             animator.SetBool("died", true);
             deathFunction();
         }
-
     }
 
     float totalDamage(float hitDamage)
@@ -65,19 +66,25 @@ public class MonsterBehavior : MonoBehaviour
         script.wave += 1;
 
         //delay untuk death animation
-        float delay = 1.5f;
-        Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length + delay);
+        float delay = 0.2f;
+        float multiplier = animator.GetFloat("deadAnimationSpeed");
+        Destroy(gameObject, (animator.GetCurrentAnimatorStateInfo(0).length * multiplier) + delay);
 
         //tambahkan uang saat musuh mati
         script.money += droppedMoney;
     }
 
-    void initiateMonster()
+    public void initiateMonster(float startHealth, float startArmor, float startSpeed, int startDroppedMoney)
     {
+        //inisiasi healthbar
+        GameObject healthBarGui = GameObject.Find("Health Bar");
+        healthBar = healthBarGui.GetComponent<HealthBar>();
+
         //inisiasi status monster
-        health = 100f;
-        healthBar.SetMaxHealth((int)health);
-        armor = 0.1f;
-        speed = 6f;
+        health = startHealth;
+        healthBar.SetMaxHealth((int)startHealth);
+        armor = startArmor;
+        speed = startSpeed;
+        droppedMoney = startDroppedMoney;
     }
 }
