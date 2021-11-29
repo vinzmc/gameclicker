@@ -9,6 +9,8 @@ public class ClickDetection : MonoBehaviour
     public float armor;//persentase
     public float speed; //per menit
 
+    public HealthBar healthBar;
+
     //Dropped Items
     public int droppedMoney = 50;//total uang yang di drop oleh monster
     
@@ -27,6 +29,8 @@ public class ClickDetection : MonoBehaviour
         gui = GameObject.Find("GameUI");
         script = gui.GetComponent<GuiScript>();
 
+        
+
         //inisiasi status monster
         initiateMonster();
     }
@@ -37,6 +41,7 @@ public class ClickDetection : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !animator.GetBool("died"))
         {
             health -= totalDamage(script.dps);
+            healthBar.setHealth((int)health);
             animator.SetTrigger("hitted");
         }
 
@@ -71,6 +76,7 @@ public class ClickDetection : MonoBehaviour
     {
         //inisiasi status monster
         health = 100f;
+        healthBar.SetMaxHealth((int)health);
         armor = 0.1f;
         speed = 6f;
     }
