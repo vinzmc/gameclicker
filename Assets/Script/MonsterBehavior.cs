@@ -6,13 +6,18 @@ public class MonsterBehavior : MonoBehaviour
 {
     public float health; //darah monster
     public float armor; //persentase
-    public float speed; //per menit
+    public float speed; //darah regen berdasarkan speed
 
     //Dropped Items
     public int droppedMoney;//total uang yang di drop oleh monster
 
     // parameter untuk check
     float deathDelay;
+    float baseHealth;
+    float regenDelay;
+    float attackSpeed = 10f;
+    float autoAttackDelay;
+
     //healthbar dari monster
     HealthBar healthBar;
 
@@ -35,6 +40,12 @@ public class MonsterBehavior : MonoBehaviour
         healthBar = healthBarGui.GetComponent<HealthBar>();
         DFTController.Initialize();
 
+        speed = 120f / speed;
+        regenDelay = Time.time + speed;
+
+        baseHealth = health;
+
+        autoAttackDelay = Time.time + (5f / attackSpeed);
         //inisiasi status monster
         // initiateMonster();
     }
@@ -48,6 +59,16 @@ public class MonsterBehavior : MonoBehaviour
             healthBar.setHealth((int)health);
             animator.SetTrigger("hitted");
             DFTController.CreateFloatingText(totalDamage(script.dps).ToString(), transform);
+        }
+
+
+        if (Time.time > autoAttackDelay && !animator.GetBool("died"))
+        {
+            Debug.Log(script.idleDps);
+            health -= totalDamage(script.idleDps);
+            healthBar.setHealth((int)health);
+            animator.SetTrigger("hitted");
+            autoAttackDelay = Time.time + (5f / attackSpeed);
         }
 
         if (health <= 0)
@@ -66,10 +87,23 @@ public class MonsterBehavior : MonoBehaviour
             {
                 Destroy(gameObject);
                 script.money += droppedMoney;
+                script.wave += 1;
                 MonsterSpawner monsterSpawnerScript = gameObject.GetComponentInParent<MonsterSpawner>();
                 monsterSpawnerScript.spawn = true;
                 deathDelay = 0f;
             }
+        }
+        else
+        {
+            animator.SetBool("died", false);
+        }
+        //reset darah
+        if (Time.time > regenDelay)
+        {
+            health = baseHealth;
+            healthBar.setHealth((int)health);
+
+            regenDelay = Time.time + speed;
         }
     }
 

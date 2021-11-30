@@ -16,6 +16,7 @@ public class GuiScript : MonoBehaviour
     public int money;
     public int wave;
     public int dps;
+    public int idleDps;
 
     //UI
     public TextMeshProUGUI moneyText;
@@ -76,7 +77,7 @@ public class GuiScript : MonoBehaviour
             else if (spellName == "ice")
             {
                 ice += 1;
-                // idle damage
+                idleDps += 10;
             }
             else if (spellName == "runic")
             {
@@ -101,6 +102,7 @@ public class GuiScript : MonoBehaviour
         money = 0;
         wave = 1;
         dps = (fire * 100) + (runic * 200);
+        idleDps = ice * 10;
     }
 
 
@@ -115,6 +117,7 @@ public class GuiScript : MonoBehaviour
         PlayerPrefs.SetInt("money", money);
         PlayerPrefs.SetInt("wave", wave);
         PlayerPrefs.SetInt("dps", dps);
+        PlayerPrefs.SetInt("idleDps", idleDps);
 
         //Spell
         PlayerPrefs.SetInt("fire", fire);
@@ -140,6 +143,7 @@ public class GuiScript : MonoBehaviour
             money = PlayerPrefs.GetInt("money");
             wave = PlayerPrefs.GetInt("wave");
             dps = PlayerPrefs.GetInt("dps");
+            idleDps = PlayerPrefs.GetInt("idleDps");
 
             //spell
             fire = PlayerPrefs.GetInt("fire");
@@ -182,7 +186,7 @@ public class GuiScript : MonoBehaviour
         Button btnRunic = GameObject.Find("Buy Runic").GetComponent<Button>();
         btnRunic.onClick.AddListener(delegate { upgradeSpell("runic", 25); });
     }
-    
+
     void OnGUI()
     {
         // if (GUI.Button(new Rect(0, 0, 125, 50), "Raise Integer"))
