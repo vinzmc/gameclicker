@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class GuiScript : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class GuiScript : MonoBehaviour
     void Update()
     {
         //masukin parameter ke UI
-        moneyText.text = '$' + money.ToString();
+        moneyText.text = '$' + WordNotation(money, "F2");
         waveText.text = wave.ToString();
         dpsText.text = dps.ToString();
 
@@ -206,6 +207,30 @@ public class GuiScript : MonoBehaviour
         // if (GUI.Button(new Rect(750, 100, 125, 50),
         //             "Load Your Game"))
         //     LoadGame();
+    }
+
+    string WordNotation(int money, string digits)
+    {
+        int digitsTemp = Convert.ToInt32(Mathf.Floor(Mathf.Log10(money)));
+        IDictionary<int, string> prefixes = new Dictionary<int, string>()
+        {
+            {3,"K"},
+            {4,"K"},
+            {5,"K"},
+            {6,"M"},
+            {7,"M"},
+            {8,"M"},
+            {9,"B"},
+            {10,"B"},
+            {11,"B"},
+            {12,"T"},
+            {13,"T"},
+            {14,"T"},
+            {15,"Qa"},
+        };
+        if (money >= 1000)
+            return (money / Mathf.Pow(10, digitsTemp)).ToString(digits) + prefixes[digitsTemp];
+        return money.ToString(digits);
     }
 }
 
