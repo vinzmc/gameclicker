@@ -12,6 +12,11 @@ public class GuiScript : MonoBehaviour
     int ice;
     int runic;
 
+    //Spell Price
+    int firePrice;
+    int icePrice;
+    int runicPrice;
+
     //Variable, (jangan di atur di inspector)
 
     public int money;
@@ -28,6 +33,11 @@ public class GuiScript : MonoBehaviour
     public TextMeshProUGUI fireLvl;
     public TextMeshProUGUI iceLvl;
     public TextMeshProUGUI runicLvl;
+
+    // UI Spell Price
+    public Text firePriceUI;
+    public Text icePriceUI;
+    public Text runicPriceUI;
 
 
 
@@ -49,6 +59,21 @@ public class GuiScript : MonoBehaviour
         //fungsi untuk auto save game perdetik [time]
         float time = 5f;
         InvokeRepeating("SaveGame", time, time);
+
+        //spell Level
+        fireLvl.text = "Lv. " + fire.ToString();
+        iceLvl.text = "Lv. " + ice.ToString();
+        runicLvl.text = "Lv. " + runic.ToString();
+
+        //harga spell
+        firePrice = fire * (10 * fire/10);
+        icePrice = ice * (20 * ice/10);
+        runicPrice = runic * (500 * runic/10);
+
+        //spell UI
+        firePriceUI.text = "BUY\n$" + WordNotation(firePrice, "F2");
+        icePriceUI.text = "BUY\n$" + WordNotation(icePrice, "F2");
+        runicPriceUI.text = "BUY\n$" + WordNotation(runicPrice, "F2");
     }
 
     // Update is called once per frame
@@ -58,10 +83,6 @@ public class GuiScript : MonoBehaviour
         moneyText.text = '$' + WordNotation(money, "F2");
         waveText.text = wave.ToString();
         dpsText.text = dps.ToString();
-
-        fireLvl.text = "Lv. " + fire.ToString();
-        iceLvl.text = "Lv. " + ice.ToString();
-        runicLvl.text = "Lv. " + runic.ToString();
     }
 
     //update Spell 
@@ -90,6 +111,21 @@ public class GuiScript : MonoBehaviour
         {
             Debug.Log("uang ga cukup dek!");
         }
+
+        //spell Level
+        fireLvl.text = "Lv. " + fire.ToString();
+        iceLvl.text = "Lv. " + ice.ToString();
+        runicLvl.text = "Lv. " + runic.ToString();
+
+        //harga spell
+        firePrice = fire * (10 * fire/10);
+        icePrice = ice * (20 * ice/10);
+        runicPrice = runic * (500 * runic/10);
+
+        //spell UI
+        firePriceUI.text = "BUY\n$" + WordNotation(firePrice, "F2");
+        icePriceUI.text = "BUY\n$" + WordNotation(icePrice, "F2");
+        runicPriceUI.text = "BUY\n$" + WordNotation(runicPrice, "F2");
     }
 
     void initialValue()
@@ -179,13 +215,13 @@ public class GuiScript : MonoBehaviour
     {
         //button assign
         Button btnFire = GameObject.Find("Buy Fire").GetComponent<Button>();
-        btnFire.onClick.AddListener(delegate { upgradeSpell("fire", 10); });
+        btnFire.onClick.AddListener(delegate { upgradeSpell("fire", firePrice); });
 
         Button btnIce = GameObject.Find("Buy Ice").GetComponent<Button>();
-        btnIce.onClick.AddListener(delegate { upgradeSpell("ice", 15); });
+        btnIce.onClick.AddListener(delegate { upgradeSpell("ice", icePrice); });
 
         Button btnRunic = GameObject.Find("Buy Runic").GetComponent<Button>();
-        btnRunic.onClick.AddListener(delegate { upgradeSpell("runic", 25); });
+        btnRunic.onClick.AddListener(delegate { upgradeSpell("runic", runicPrice); });
     }
 
     void OnGUI()

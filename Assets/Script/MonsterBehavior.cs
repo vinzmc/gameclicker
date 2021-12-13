@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MonsterBehavior : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class MonsterBehavior : MonoBehaviour
     float regenDelay;
     float attackSpeed = 10f;
     float autoAttackDelay;
+    int regenCount;
 
     //healthbar dari monster
     HealthBar healthBar;
@@ -29,6 +31,7 @@ public class MonsterBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        regenCount = 0;
         //Get the Animator attached to the GameObject you are intending to animate.
         animator = gameObject.GetComponent<Animator>();
 
@@ -53,7 +56,7 @@ public class MonsterBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !animator.GetBool("died"))
+        if (Input.GetMouseButtonDown(0) && !animator.GetBool("died") && !EventSystem.current.IsPointerOverGameObject())
         {
             health -= totalDamage(script.dps);
             healthBar.setHealth((int)health);
@@ -64,10 +67,10 @@ public class MonsterBehavior : MonoBehaviour
 
         if (Time.time > autoAttackDelay && !animator.GetBool("died"))
         {
-            Debug.Log(script.idleDps);
+            // Debug.Log(script.idleDps);
             health -= totalDamage(script.idleDps);
             healthBar.setHealth((int)health);
-            animator.SetTrigger("hitted");
+            // animator.SetTrigger("hitted");
             autoAttackDelay = Time.time + (5f / attackSpeed);
         }
 
@@ -104,6 +107,19 @@ public class MonsterBehavior : MonoBehaviour
             healthBar.setHealth((int)health);
 
             regenDelay = Time.time + speed;
+            regenCount++;
+
+            if (regenCount > 5)
+            {
+                if (script.wave % 10 > 1)
+                {
+                    //reduce wave if player not strong enough
+                    Destroy(gameObject);
+                    script.wave -= 1;
+                    MonsterSpawner monsterSpawnerScript = gameObject.GetComponentInParent<MonsterSpawner>();
+                    monsterSpawnerScript.spawn = true;
+                }
+            }
         }
     }
 

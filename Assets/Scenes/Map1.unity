@@ -52246,6 +52246,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4372e02dd0e54440977f29b6a4c317b, type: 3}
+--- !u!1 &1334577447 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2821185538055456420, guid: 9dd8a3227dc0aa84099496d08718ad7b, type: 3}
+  m_PrefabInstance: {fileID: 767634799}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1334577449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334577447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec3553303c3fb24baee75c69e08efa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1336020439 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 800616031680524858, guid: cc9f980ee3a12ab49af49ee894ebd89a, type: 3}
@@ -77292,12 +77309,16 @@ MonoBehaviour:
   money: 0
   wave: 0
   dps: 0
+  idleDps: 0
   moneyText: {fileID: 1903268115}
   waveText: {fileID: 1778458843}
   dpsText: {fileID: 392980321}
   fireLvl: {fileID: 91452958}
   iceLvl: {fileID: 1190962307}
   runicLvl: {fileID: 719389330}
+  firePriceUI: {fileID: 298328870}
+  icePriceUI: {fileID: 854476196}
+  runicPriceUI: {fileID: 752868088}
 --- !u!1001 &2006921720
 PrefabInstance:
   m_ObjectHideFlags: 0
