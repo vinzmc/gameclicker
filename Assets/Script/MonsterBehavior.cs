@@ -41,7 +41,6 @@ public class MonsterBehavior : MonoBehaviour
 
         GameObject healthBarGui = GameObject.Find("Health Bar");
         healthBar = healthBarGui.GetComponent<HealthBar>();
-        DFTController.Initialize();
 
         speed = 120f / speed;
         regenDelay = Time.time + speed;
@@ -61,7 +60,6 @@ public class MonsterBehavior : MonoBehaviour
             health -= totalDamage(script.dps);
             healthBar.setHealth((int)health);
             animator.SetTrigger("hitted");
-            DFTController.CreateFloatingText(totalDamage(script.dps).ToString(), transform);
         }
 
 
