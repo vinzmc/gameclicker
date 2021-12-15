@@ -66,9 +66,9 @@ public class GuiScript : MonoBehaviour
         runicLvl.text = "Lv. " + runic.ToString();
 
         //harga spell
-        firePrice = fire * (10 * fire/10);
-        icePrice = ice * (20 * ice/10);
-        runicPrice = runic * (500 * runic/10);
+        firePrice = fire * (10 * fire / 10);
+        icePrice = ice * (20 * ice / 10);
+        runicPrice = runic * (500 * runic / 10);
 
         //spell UI
         firePriceUI.text = "BUY\n$" + WordNotation(firePrice, "F2");
@@ -118,9 +118,9 @@ public class GuiScript : MonoBehaviour
         runicLvl.text = "Lv. " + runic.ToString();
 
         //harga spell
-        firePrice = fire * (10 * fire/10);
-        icePrice = ice * (20 * ice/10);
-        runicPrice = runic * (500 * runic/10);
+        firePrice = fire * (10 * fire / 10);
+        icePrice = ice * (20 * ice / 10);
+        runicPrice = runic * (500 * runic / 10);
 
         //spell UI
         firePriceUI.text = "BUY\n$" + WordNotation(firePrice, "F2");
@@ -222,7 +222,37 @@ public class GuiScript : MonoBehaviour
 
         Button btnRunic = GameObject.Find("Buy Runic").GetComponent<Button>();
         btnRunic.onClick.AddListener(delegate { upgradeSpell("runic", runicPrice); });
+
+        // Button btnMaxIce = GameObject.Find("BuyMax Fire").GetComponent<Button>();
+        // btnRunic.onClick.AddListener(delegate { buyMaxSpell("fire"); });
+
+        // Button btnMaxFire = GameObject.Find("BuyMax Ice").GetComponent<Button>();
+        // btnRunic.onClick.AddListener(delegate { buyMaxSpell("ice"); });
+
+        // Button btnMaxRunic = GameObject.Find("BuyMax Runic").GetComponent<Button>();
+        // btnRunic.onClick.AddListener(delegate { buyMaxSpell("runic"); });
     }
+
+    // void buyMaxSpell(String spell)
+    // {
+
+    //     int savedMoney = money;
+    //     do
+    //     {
+    //         if (spell == "fire")
+    //         {
+    //             upgradeSpell(spell, firePrice);
+    //         }
+    //         else if (spell == "ice")
+    //         {
+    //             upgradeSpell(spell, icePrice);
+    //         }
+    //         else
+    //         {
+    //             upgradeSpell(spell, runicPrice);
+    //         }
+    //     } while (savedMoney != money);
+    // }
 
     void OnGUI()
     {

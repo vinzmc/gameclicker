@@ -32,10 +32,11 @@ public class MonsterSpawner : MonoBehaviour
             Quaternion.Euler(0f, gameObject.transform.rotation.eulerAngles.y, 0f),
             gameObject.transform
         );
-        float monsterHP = script.wave * 1000f;
-        float monsterArmor = script.wave * 0.01f;
-        float monsterSpeed = script.wave * 1f;
-        int droppedMoney = 100 + script.wave * 20;
+        float monsterHP = script.wave * (750f * (script.wave % 3));
+        float monsterArmor = ((script.wave * 0.01f) % 5) + (script.wave * 0.001f);
+        float monsterSpeed = ((script.wave * 1f) % 7) + (script.wave * 0.1f);
+        int droppedMoney = (script.wave * 100) + (script.wave / 5 * 100);
+        Debug.Log(droppedMoney);
 
         newMonster.GetComponent<MonsterBehavior>().initiateMonster(monsterHP, monsterArmor, monsterSpeed, droppedMoney);
 
