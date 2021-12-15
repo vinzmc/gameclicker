@@ -36,12 +36,17 @@ public class MainMenuCamera : MonoBehaviour
         Debug.Log("testing");
     }
 
-    public void changeScene(){
-        SceneManager.LoadScene("Map1");
-    }
+    // public void changeScene(){
+    //     SceneManager.LoadScene("Map1");
+    // }
 
-    public void CallLoadNextScene()
+    // public void CallLoadNextScene()
+    // {
+    //     Invoke("changeScene", 0.3f);
+    // }
+
+    public void exitGame()
     {
-        Invoke("changeScene", 0.3f);
+        Application.Quit();
     }
 }
