@@ -277,25 +277,19 @@ public class GuiScript : MonoBehaviour
 
     string WordNotation(int money, string digits)
     {
-        int digitsTemp = Convert.ToInt32(Mathf.Floor(Mathf.Log10(money)));
+        int digitsTemp = Convert.ToInt32((Mathf.Log10(money)));
         IDictionary<int, string> prefixes = new Dictionary<int, string>()
         {
             {3,"K"},
-            {4,"K"},
-            {5,"K"},
             {6,"M"},
-            {7,"M"},
-            {8,"M"},
             {9,"B"},
             {10,"B"},
-            {11,"B"},
             {12,"T"},
-            {13,"T"},
-            {14,"T"},
             {15,"Qa"},
         };
+        int digitsEvery3 = 3 * Mathf.FloorToInt(digitsTemp / 3);
         if (money >= 1000)
-            return (money / Mathf.Pow(10, digitsTemp)).ToString(digits) + prefixes[digitsTemp];
+            return (money / Mathf.Pow(10, digitsEvery3)).ToString(digits) + prefixes[digitsEvery3];
         return money.ToString(digits);
     }
 }
