@@ -99,7 +99,7 @@ public class MonsterBehavior : MonoBehaviour
             animator.SetBool("died", false);
         }
         //reset darah
-        if (Time.time > regenDelay)
+        if (Time.time > regenDelay && !animator.GetBool("died"))
         {
             health = baseHealth;
             healthBar.setHealth((int)health);
