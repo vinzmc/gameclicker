@@ -39,11 +39,9 @@ public class GuiScript : MonoBehaviour
     public Text icePriceUI;
     public Text runicPriceUI;
 
-
-
-    // public Button fireButon;
-    // public Button iceButton;
-    // public Button runicButton;
+    //audio source
+    public AudioSource audio1;
+    public AudioSource audio2;
 
     //contoh
     // int intToSave;
@@ -106,10 +104,12 @@ public class GuiScript : MonoBehaviour
                 runic += 1;
                 dps += 200;
             }
+            audio1.Play();
         }
         else
         {
             Debug.Log("uang ga cukup dek!");
+            audio2.Play();
         }
 
         //spell Level
